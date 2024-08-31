@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MySelect from './MySelect';
 
+
 function CountryCitySelector() {
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
@@ -82,42 +83,44 @@ function CountryCitySelector() {
 
   const getWeatherIcon = (w) => {
     if (w.prec_type === 'rain') {
-      return "public/downpour-rainy-day-16531.png";
+      return "/downpour-rainy-day-16531.png";
     } else if (w.prec_type === 'snow') {
-      return "public/snowfall-and-blue-cloud-16541.png";
+      return "/snowfall-and-blue-cloud-16541.png";
     } else if (w.prec_type === 'none') {
       if (w.cloudcover < 20) {
-        return "public/yellow-sun-16526.png";
+        return "/yellow-sun-16526.png";
       } else if (w.cloudcover < 80) {
-        return "public/yellow-sun-and-blue-cloud-16528.png";
+        return "/yellow-sun-and-blue-cloud-16528.png";
       } else {
-        return "public/blue-cloud-and-weather-16527.png";
+        return "/blue-cloud-and-weather-16527.png";
       }
     } else if (w.lifted_index <= -6) {
       if (w.prec_amount < 4) {
-        return "public/cloud-and-yellow-lightning-16534.png";
+        return "/cloud-and-yellow-lightning-16534.png";
       } else {
-        return "public/lightning-and-blue-rain-cloud-16533.png";
+        return "/lightning-and-blue-rain-cloud-16533.png";
       }
     }
-    return "public/default-weather-icon.png"; // Default icon
+    return "/default-weather-icon.png"; // Default icon
   };
 
   return (
     <div>
-      <MySelect
-        selectText="Countries"
-        selectId="Country"
-        onChange={handleCountryChange}
-        options={countries}
-      />
-      <MySelect
-        selectText="Cities"
-        selectId="City"
-        onChange={handleCityChange}
-        options={cities}
-        disabled={!selectedCountry} // Disable city selector if no country is selected
-      />
+      <div id='top'>
+        <MySelect
+          selectText="Countries"
+          selectId="Country"
+          onChange={handleCountryChange}
+          options={countries}
+        />
+        <MySelect
+          selectText="Cities"
+          selectId="City"
+          onChange={handleCityChange}
+          options={cities}
+          disabled={!selectedCountry} // Disable city selector if no country is selected
+        />
+        </div>
       <h1>{selectedCountry && selectedCity ? `${selectedCountry} - ${selectedCity}` : 'Select a country and city'}</h1>
       {loading ? <p>Loading...</p> : (
         <div className="weather-container">

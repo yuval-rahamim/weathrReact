@@ -4,7 +4,7 @@ function MySelect(props) {
   const { selectText, selectId, onChange, options, disabled } = props;
 
   return (
-    <div>
+    <div id='top'>
       <h1>{selectText}</h1>
       <select onChange={onChange} id={selectId} disabled={disabled}>
         <option value="" disabled>Pick a {selectText}</option>
